@@ -2,6 +2,10 @@
   "files.associations": {
     "*.txt": "plaintext",
     "cmath": "cpp",
-    "ostream": "cpp"
+    "ostream": "cpp",
+    "iostream": "cpp",
+    "deque": "cpp",
+    "string": "cpp",
+    "vector": "cpp"
   }
 }
