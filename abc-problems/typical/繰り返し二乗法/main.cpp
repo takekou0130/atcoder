@@ -5,6 +5,16 @@ using namespace std;
 
 typedef long long ll;
 
-int main(){
+ll n, m, p;
+ll result = 1;
 
+int main(){
+  cin >> n >> m >> p;
+  while(p > 0){
+    if(p & 1) result = (result * n) % m;
+    n = (n * n) % m;
+    p /= 2;
+  }
+
+  cout << result << endl;
 }
