@@ -1,44 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
+typedef long long ll;
+typedef long double ld ;
+typedef pair<ll,ll> P ;
+typedef tuple<ll,ll,ll> TP ;
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
 #define rep2(i, s, n) for (int i = (s); i < (int)(n); i++)
+#define endl "\n"
+#define chmin(a,b) a = min(a,b)
+#define chmax(a,b) a = max(a,b)
+#define bit_count(x) __builtin_popcountll(x)
+#define gcd(a,b) __gcd(a,b)
+#define lcm(a,b) a / gcd(a,b) * b
 
-typedef long long ll;
-
-int q;
-// 値と個数のpair
-vector<pair<ll, ll> > v;
 
 int main(){
-  cin >> q;
-  ll cur_v_idx = 0;
-  rep(i, q){
-    int type;
-    cin >> type;
-    if(type == 1){
-      ll x,c;
-      cin >> x >> c;
-      pair<ll, ll> p;
-      p.first = x;
-      p.second = c;
-      v.push_back(p);
-    }
-    if(type == 2){
-      ll c;
-      cin >> c;
-      ll sum = 0;
-      while(c > 0){
-        if(v[cur_v_idx].second > c){
-          sum += v[cur_v_idx].first * c;
-          v[cur_v_idx].second -= c;
-          break;
-        } else {
-          sum += v[cur_v_idx].first * v[cur_v_idx].second;
-          c -= v[cur_v_idx].second;
-          cur_v_idx++;
-        }
-      }
-      cout << sum << endl;
-    }
-  }
+
 }

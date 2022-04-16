@@ -13,5 +13,17 @@ typedef tuple<ll,ll,ll> TP ;
 #define gcd(a,b) __gcd(a,b)
 #define lcm(a,b) a / gcd(a,b) * b
 
+int n;
+string arr[1010][2];
+
 int main(){
+  cin >> n;
+  rep(i, n) cin >> arr[i][0] >> arr[i][1];
+  rep(i, n) rep(j, n) {
+    if(arr[i][0] == arr[j][0] && arr[i][1] == arr[j][1] && i != j){
+      cout << "Yes" << endl;
+      return 0;
+    }
+  }
+  cout << "No" << endl;
 }

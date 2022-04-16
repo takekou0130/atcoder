@@ -13,7 +13,34 @@ typedef tuple<ll,ll,ll> TP ;
 #define gcd(a,b) __gcd(a,b)
 #define lcm(a,b) a / gcd(a,b) * b
 
+int n, k;
+ll arr[16];
 
 int main(){
-
+  cin >> n >> k;
+  rep(i, n) cin >> arr[i];
+  ll ans = 1e18;
+  rep(i, pow(2, n)) {
+    if (bit_count(i) != k) continue;
+    int bit = i;
+    ll max_h = 0;
+    int idx = 0;
+    ll sum = 0;
+    while(bit > 0){
+      if (bit & 1<<0){
+        if (max_h >= arr[idx]){
+          sum += max_h - arr[idx] + 1;
+          max_h += 1;
+        } else {
+          chmax(max_h, arr[idx]);
+        }
+      } else {
+        chmax(max_h, arr[idx]);
+      }
+      bit /= 2;
+      idx++;
+    }
+    chmin(ans, sum);
+  }
+  cout << ans << endl;
 }

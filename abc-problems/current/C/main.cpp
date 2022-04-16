@@ -1,34 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
+typedef long long ll;
+typedef long double ld ;
+typedef pair<ll,ll> P ;
+typedef tuple<ll,ll,ll> TP ;
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
 #define rep2(i, s, n) for (int i = (s); i < (int)(n); i++)
+#define endl "\n"
+#define chmin(a,b) a = min(a,b)
+#define chmax(a,b) a = max(a,b)
+#define bit_count(x) __builtin_popcountll(x)
+#define gcd(a,b) __gcd(a,b)
+#define lcm(a,b) a / gcd(a,b) * b
 
-typedef long long ll;
-
-int n;
-vector<vector<ll> > v;
 
 int main(){
-  cin >> n;
-  if(n == 1){
-    cout << 1 << endl;
-    return 0;
-  }
-  vector<ll> fir = {1};
-  v.push_back(fir);
-  for(int i = 1; i < n; i++){
-    vector<ll> past = v[i-1];
-    vector<ll> now = past;
-    now.push_back(i+1);
-    rep(j, past.size()){
-      now.push_back(past[j]);
-    }
-    v.push_back(now);
-  }
 
-  vector<ll> result = v[n-1];
-  rep(i, result.size()){
-    cout << result[i] << " ";
-  }
-  cout << endl;
 }
