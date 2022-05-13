@@ -13,34 +13,41 @@ typedef tuple<ll,ll,ll> TP ;
 #define gcd(a,b) __gcd(a,b)
 #define lcm(a,b) a / gcd(a,b) * b
 
+int dist[101010];
 int n, m;
-int dp[21][50505];
-vector<int> coin;
+vector<int> G[101010];
+
+int dfs(int s){
+  int res = -1;
+  for(auto g: G[s]){
+    if(dist[g] != -1) chmax(res, dist[g]);
+    else chmax(res, dfs(g));
+  }
+  res++;
+  dist[s] = res;
+  return res;
+}
 
 int main(){
   cin >> n >> m;
   rep(i, m){
-    int c;
-    cin >> c;
-    coin.push_back(c);
+    int x,y;
+    cin >> x >> y;
+    x--;
+    y--;
+    G[x].push_back(y);
   }
 
-  sort(coin.begin(), coin.end());
-
-  // 0円のときは0枚
-  rep(i, m) dp[i][0] = 0;
-  // 1枚目は必ず1円なのでj枚必要
-  rep(j, n+1) dp[0][j] = j;
-
-  rep2(i,1, m) {
-    rep2(j, 1, n+1) {
-      if (coin[i] > j){
-        dp[i][j] = dp[i-1][j];
-      } else {
-        dp[i][j] = min(dp[i-1][j], dp[i][j-coin[i]]+1);
-      }
-    }
+  rep(i, n) {
+    dist[i] = -1;
   }
 
-  cout << dp[m-1][n] << endl;
+  rep(i, n){
+    if(dist[i] != -1) continue;
+    dfs(i);
+  }
+
+  int ans = -1;
+  rep(i, n) chmax(ans, dist[i]);
+  cout << ans << endl;
 }

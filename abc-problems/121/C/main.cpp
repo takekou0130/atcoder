@@ -14,33 +14,23 @@ typedef tuple<ll,ll,ll> TP ;
 #define lcm(a,b) a / gcd(a,b) * b
 
 int n, m;
-int dp[21][50505];
-vector<int> coin;
+map<ll, ll> mp;
+set<ll> v;
+ll ans = 0;
 
 int main(){
   cin >> n >> m;
+  rep(i, n){
+    ll a, b;
+    cin >> a >> b;
+    v.insert(a);
+    mp[a] += b;
+  }
+  auto itr = v.begin();
   rep(i, m){
-    int c;
-    cin >> c;
-    coin.push_back(c);
+    ans += *itr;
+    mp[*itr]--;
+    if(mp[*itr] == 0) itr++;
   }
-
-  sort(coin.begin(), coin.end());
-
-  // 0円のときは0枚
-  rep(i, m) dp[i][0] = 0;
-  // 1枚目は必ず1円なのでj枚必要
-  rep(j, n+1) dp[0][j] = j;
-
-  rep2(i,1, m) {
-    rep2(j, 1, n+1) {
-      if (coin[i] > j){
-        dp[i][j] = dp[i-1][j];
-      } else {
-        dp[i][j] = min(dp[i-1][j], dp[i][j-coin[i]]+1);
-      }
-    }
-  }
-
-  cout << dp[m-1][n] << endl;
+  cout << ans << endl;
 }
