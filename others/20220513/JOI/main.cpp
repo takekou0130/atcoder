@@ -13,7 +13,24 @@ typedef tuple<ll,ll,ll> TP ;
 #define gcd(a,b) __gcd(a,b)
 #define lcm(a,b) a / gcd(a,b) * b
 
+int n;
+ll arr[110];
+ll dp[110][22] = {0};
 
 int main(){
+  cin >> n;
+  rep(i, n){
+    cin >> arr[i];
+  }
 
+  dp[0][arr[0]] = (ll)1;
+
+  rep(i, n-1){
+    rep(j, 21){
+      if(j + arr[i+1] < 21) dp[i+1][j + arr[i+1]] += dp[i][j];
+      if(j - arr[i+1] >= 0) dp[i+1][j - arr[i+1]] += dp[i][j];
+    }
+  }
+
+  cout << dp[n-2][arr[n-1]] << endl;
 }
