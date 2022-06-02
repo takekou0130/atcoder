@@ -13,23 +13,15 @@ typedef tuple<ll,ll,ll> TP ;
 #define gcd(a,b) __gcd(a,b)
 #define lcm(a,b) a / gcd(a,b) * b
 
-ll n,x;
-string s;
+vector<int> arr;
+int a, b ,c ;
 
 int main(){
-  cin >> n >> x >> s;
-  ll ans = x;
-  ll stock = 0;
-  rep(i, n){
-    if(stock > 0 || ( (s[i] == 'R' || s[i] == 'L') && ans*2LL > 1e18)){
-      if(s[i] == 'R' || s[i] == 'L') stock++;
-      else stock--;
-      continue;
-    }
-    if(s[i] == 'U') ans /= 2LL;
-    if(s[i] == 'R') ans = ans * 2LL + 1LL;
-    if(s[i] == 'L') ans = ans * 2LL;
-  }
-
-  cout << ans << endl;
+  cin >> a >> b >> c;
+  arr.push_back(a);
+  arr.push_back(b);
+  arr.push_back(c);
+  sort(arr.begin(), arr.end());
+  if(arr[1] == b) cout << "Yes" << endl;
+  else cout << "No" << endl;
 }

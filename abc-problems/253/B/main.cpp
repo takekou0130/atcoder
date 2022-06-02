@@ -13,23 +13,26 @@ typedef tuple<ll,ll,ll> TP ;
 #define gcd(a,b) __gcd(a,b)
 #define lcm(a,b) a / gcd(a,b) * b
 
-ll n,x;
-string s;
+int h,w;
+P koma1;
+P koma2;
 
 int main(){
-  cin >> n >> x >> s;
-  ll ans = x;
-  ll stock = 0;
-  rep(i, n){
-    if(stock > 0 || ( (s[i] == 'R' || s[i] == 'L') && ans*2LL > 1e18)){
-      if(s[i] == 'R' || s[i] == 'L') stock++;
-      else stock--;
-      continue;
+  cin >> h >> w;
+  bool used = false;
+  rep(i, h){
+    string s;
+    cin >> s;
+    rep(j, w){
+      if(s[j] == 'o'){
+        if(!used){
+          koma1 = {i, j};
+          used = true;
+        } else {
+          koma2 = {i, j};
+        }
+      }
     }
-    if(s[i] == 'U') ans /= 2LL;
-    if(s[i] == 'R') ans = ans * 2LL + 1LL;
-    if(s[i] == 'L') ans = ans * 2LL;
   }
-
-  cout << ans << endl;
+  cout << abs(koma1.first-koma2.first)+abs(koma1.second-koma2.second) << endl;
 }
