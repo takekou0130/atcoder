@@ -13,21 +13,29 @@ typedef tuple<ll,ll,ll> TP ;
 #define gcd(a,b) __gcd(a,b)
 #define lcm(a,b) a / gcd(a,b) * b
 
-ll ans = 0;
-ll n;
+int h,w;
+ll dp[10][10];
+int need[10] = {0};
 
 int main(){
-  cin >> n;
-  for(ll i = 1; i <= n; i++){
-    ll k = i;
-    for(ll j = 2; j*j <= k; j++){
-      while(k % (j*j) == 0){
-        k /= (j * j);
+  cin >> h >> w;
+  rep(i, 10) rep(j, 10) cin >> dp[i][j];
+
+  // ワーシャルフロイド
+  rep(k, 10){
+    rep(i, 10){
+      rep(j, 10){
+        dp[i][j] = min(dp[i][j], dp[i][k]+dp[k][j]);
       }
     }
-    for(ll j = 1; k*j*j <= n; j++){
-      ans++;
-    }
   }
+
+  rep(i, h) rep(j, w){
+    int a;
+    cin >> a;
+    need[a]++;
+  }
+  ll ans = 0;
+  rep(i, 10) ans += need[i] * dp[i][1];
   cout << ans << endl;
 }

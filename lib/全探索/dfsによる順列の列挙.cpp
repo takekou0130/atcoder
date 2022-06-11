@@ -13,21 +13,25 @@ typedef tuple<ll,ll,ll> TP ;
 #define gcd(a,b) __gcd(a,b)
 #define lcm(a,b) a / gcd(a,b) * b
 
-ll ans = 0;
-ll n;
+int n;
+// 広義単調増加の例
+vector<int> vec ;
+void dfs(int v){
+    if(vec.size() == n){
+        for(auto el: vec){
+          cout << el << " ";
+        }
+        cout << endl;
+        return ;
+    }
+    for(int i = v ; i <= 5 ; i++){
+        vec.push_back(i) ;
+        dfs(i) ;
+        vec.pop_back() ;
+    }
+}
 
 int main(){
   cin >> n;
-  for(ll i = 1; i <= n; i++){
-    ll k = i;
-    for(ll j = 2; j*j <= k; j++){
-      while(k % (j*j) == 0){
-        k /= (j * j);
-      }
-    }
-    for(ll j = 1; k*j*j <= n; j++){
-      ans++;
-    }
-  }
-  cout << ans << endl;
+  dfs(1);
 }
