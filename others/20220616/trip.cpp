@@ -13,7 +13,25 @@ typedef tuple<ll,ll,ll> TP ;
 #define gcd(a,b) __gcd(a,b)
 #define lcm(a,b) a / gcd(a,b) * b
 
+int n,m;
+ll a[101010];
+ll sum[101010];
+ll ans = 0;
+ll mod = 100000;
 
 int main(){
+  cin >> n >> m;
+  rep(i, n-1) cin >> a[i];
+  sum[0] = 0;
+  rep(i, n-1) sum[i+1] = sum[i] + a[i];
+  ll now = 0;
+  rep(i, m){
+    int k;
+    cin >> k;
+    ans += abs(sum[now+k] - sum[now]);
+    ans %= mod;
+    now += k;
+  }
 
+  cout << ans << endl;
 }
