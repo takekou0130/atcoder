@@ -15,8 +15,32 @@ typedef tuple<ll,ll,ll> TP ;
 
 ll n,q;
 ll a[202020];
+ll sum[202020];
 
 int main(){
   cin >> n >> q;
+  rep(i, n) cin >> a[i];
+  sort(a, a+n);
+  sum[0] = 0;
+  rep(i, n) sum[i+1] = sum[i] + a[i];
+  rep(i, q){
+    ll x;
+    cin >> x;
+    int idx = lower_bound(a,a+n, x) - a;
+    ll ans = 0;
 
+    if(idx != 0){
+      ll s = sum[idx] - sum[0];
+      ans += x * idx - s;
+    }
+
+    if(idx != n){
+      ll s = sum[n] - sum[idx];
+      ans += s - x * (n-idx);
+    }
+
+    cout << ans << endl;
+  }
 }
+
+

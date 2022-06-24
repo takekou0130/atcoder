@@ -13,5 +13,31 @@ typedef tuple<ll,ll,ll> TP ;
 #define gcd(a,b) __gcd(a,b)
 #define lcm(a,b) a / gcd(a,b) * b
 
+ll n,C;
+map<ll, ll> mp;
+
 int main(){
+  cin >> n >> C;
+  rep(i, n){
+    ll a,b,c;
+    cin >> a >> b >> c;
+    a--;
+    mp[a] += c;
+    mp[b] -= c;
+  }
+
+  ll ans = 0;
+  ll sum = 0;
+  ll past = 0;
+  for(auto m: mp){
+    if (sum != 0){
+      ll cost = min(sum, C);
+      ans += cost * (m.first - past);
+    }
+
+    sum += m.second;
+    past = m.first;
+  }
+
+  cout << ans << endl;
 }
