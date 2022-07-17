@@ -13,7 +13,10 @@ typedef tuple<ll,ll,ll> TP ;
 #define gcd(a,b) __gcd(a,b)
 #define lcm(a,b) a / gcd(a,b) * b
 
-
+ll n,z,w;
+ll a[2020];
 int main(){
+  cin >> n >> z >> w;
+  rep(i, n) cin >> a[i];
 
 }
