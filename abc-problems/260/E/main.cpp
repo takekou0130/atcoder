@@ -13,25 +13,24 @@ typedef tuple<ll,ll,ll> TP ;
 #define gcd(a,b) __gcd(a,b)
 #define lcm(a,b) a / gcd(a,b) * b
 
-
 int main(){
-  set<int> s;
-  s.insert(1);
-  s.insert(2);
-  s.insert(3);
-
-  // 昇順
-  for(auto itr = s.begin(); itr != s.end(); itr++){
-    // *itrで要素を返す
-    cout << *itr << endl;
+  map<int, int> mp;
+  mp[2] = 20;
+  mp[1] = 10;
+  mp[3] = 30;
+  for(auto itr = mp.begin(); itr != mp.end(); itr++){
+    auto val = *itr;
+    cout << val.first << endl;
+    cout << val.second << endl;
   }
 
-  // 降順
-  // この時点ではsは最後の次の要素を指していることに注意（デクリメントしないと正しい値を指さない）
-  auto itr2 = s.end();
-  while(itr2 != s.begin()){
-    // 最初にデクリメントしておくのが重要
+  cout << "--------------" << endl;
+
+  auto itr2 = mp.end();
+  while(itr2 != mp.begin()){
     itr2--;
-    cout << *itr2 << endl;
+    auto val = *itr2;
+    cout << val.first << endl;
+    cout << val.second << endl;
   }
 }
