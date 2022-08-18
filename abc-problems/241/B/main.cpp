@@ -13,12 +13,24 @@ typedef tuple<ll,ll,ll> TP ;
 #define gcd(a,b) __gcd(a,b)
 #define lcm(a,b) a / gcd(a,b) * b
 
+int n,m;
+map<ll, int> mp;
+
 int main(){
-  int v[10];
-  rep(i, 10) cin >> v[i];
-  int now = 0;
-  rep(i, 3){
-    now = v[now];
+  cin >> n >> m;
+  rep(i, n){
+    ll a;
+    cin >> a;
+    mp[a]++;
   }
-  cout << now << endl;
+  rep(i, m) {
+    ll b;
+    cin >> b;
+    if(mp.count(b) && mp[b] > 0) mp[b]--;
+    else {
+      cout << "No" << endl;
+      return 0;
+    }
+  };
+  cout << "Yes" << endl;
 }

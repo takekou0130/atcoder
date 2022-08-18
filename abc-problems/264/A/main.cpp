@@ -13,12 +13,13 @@ typedef tuple<ll,ll,ll> TP ;
 #define gcd(a,b) __gcd(a,b)
 #define lcm(a,b) a / gcd(a,b) * b
 
+
 int main(){
-  int v[10];
-  rep(i, 10) cin >> v[i];
-  int now = 0;
-  rep(i, 3){
-    now = v[now];
+  string s = "atcoder";
+  int l,r;
+  cin >> l >> r;
+  for(int i = l-1; i != r; i++){
+    cout << s[i];
   }
-  cout << now << endl;
+  cout << endl;
 }
