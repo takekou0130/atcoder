@@ -14,21 +14,29 @@ typedef tuple<ll,ll,ll> TP ;
 #define lcm(a,b) a / gcd(a,b) * b
 
 int n;
-set<int> st;
+int p[100];
+int over = 0;
 
 int main(){
   cin >> n;
-  int dub = 0;
+  rep(i, 100) p[i] = 0;
   rep(i, n) {
-    int in;
-    cin >> in;
-    if(st.count(in)) {
-      dub++;
-    } else {
-      st.insert(in);
+    int a;
+    cin >> a;
+    if(a >= 3200) over++;
+    else p[a/400]++;
+  }
+  ll mx = 0;
+  ll mn = 0;
+  rep(i, 8) {
+    if(p[i] > 0) {
+      mx++;
+      mn++;
     }
   }
 
-  if(dub%2 == 0) cout << st.size() << endl;
-  else cout << st.size() - 1 << endl;
+  if(mn == 0) cout << 1;
+  else cout << mn;
+  cout << " ";
+  cout << mx + over << endl;
 }

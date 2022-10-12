@@ -13,22 +13,7 @@ typedef tuple<ll,ll,ll> TP ;
 #define gcd(a,b) __gcd(a,b)
 #define lcm(a,b) a / gcd(a,b) * b
 
-int n;
-set<int> st;
 
 int main(){
-  cin >> n;
-  int dub = 0;
-  rep(i, n) {
-    int in;
-    cin >> in;
-    if(st.count(in)) {
-      dub++;
-    } else {
-      st.insert(in);
-    }
-  }
 
-  if(dub%2 == 0) cout << st.size() << endl;
-  else cout << st.size() - 1 << endl;
 }

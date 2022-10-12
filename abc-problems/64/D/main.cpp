@@ -14,21 +14,26 @@ typedef tuple<ll,ll,ll> TP ;
 #define lcm(a,b) a / gcd(a,b) * b
 
 int n;
-set<int> st;
+string s;
+vector<char> v;
+vector<char> fu;
 
 int main(){
   cin >> n;
-  int dub = 0;
-  rep(i, n) {
-    int in;
-    cin >> in;
-    if(st.count(in)) {
-      dub++;
-    } else {
-      st.insert(in);
+  cin >> s;
+  rep(i, s.size()) {
+    if(s[i] == '(') v.push_back(')');
+    if(s[i] == ')' && v.size() == 0) {
+      fu.push_back('(');
+    }
+    else if(s[i] == ')' && v[v.size()-1] == ')') {
+      v.pop_back();
     }
   }
+  string ans = "";
+  for(auto f: fu) ans += f;
+  ans += s;
+  for(auto f: v) ans += f;
+  cout << ans << endl;
 
-  if(dub%2 == 0) cout << st.size() << endl;
-  else cout << st.size() - 1 << endl;
 }
