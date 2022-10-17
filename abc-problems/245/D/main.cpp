@@ -13,20 +13,30 @@ typedef tuple<ll,ll,ll> TP ;
 #define gcd(a,b) __gcd(a,b)
 #define lcm(a,b) a / gcd(a,b) * b
 
-int n;
-ll a[202020];
-ll v[202020];
-ll sum[202021];
+int n,m;
+ll a[101];
+ll c[202];
+vector<ll> b;
 
 int main(){
-  cin >> n;
-  rep(i, n) cin >> a[i];
-  rep(i, 202020) v[i] = 0, sum[i] = 0;
-  rep(i, n) v[a[i] - 1]++;
-  rep(i, 202020) sum[i+1] = sum[i] + v[i];
-  ll ans = 0;
-  rep2(i, 1, 202020) {
-    ans += v[i] * (sum[i] - sum[0]) * (sum[202020] - sum[i+1]);
+  cin >> n >> m;
+  rep(i, n+1) cin >> a[i];
+  rep(i, n+m+1) cin >> c[i];
+  reverse(a, a+n+1);
+  reverse(c, c+n+m+1);
+
+  rep(i, m+1){
+    ll b_i = c[i] / a[0];
+    b.push_back(b_i);
+    rep(j, n+1) {
+      c[i+j] -= a[j] * b_i;
+    }
   }
-  cout << ans << endl;
+
+  reverse(b.begin(), b.end());
+  rep(i, m+1){
+    cout << b[i];
+    if(i != m) cout << " ";
+  }
+  cout << endl;
 }
